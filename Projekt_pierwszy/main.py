@@ -1,5 +1,10 @@
 tablica_ksiazek = []
+users = []
 
+def Login():
+    login = input(" Podaj login")
+    haslo = input(" Podaj hasło")
+    return login,haslo
 
 def ShowMenu():
     print("___________MENU______________")
@@ -32,12 +37,26 @@ def Rent_A_book(number):
     file = open("C:/Users/studentwsb/lab/Projekt_pierwszy/books.txt", "r")
     x = file.readlines()
 
-    for y in x:
-        if tablica_ksiazek[0] == number:
-            print(tablica_ksiazek[1])
+    for y in tablica_ksiazek:
+        if y[0] == int(number):
+            print(y[1])
             break
-
-
+def Logowanie():
+    login, haslo = Login()
+    file = open("C:/Users/studentwsb/lab/Projekt_pierwszy/users.txt", "r")
+    x = file.readlines()
+    for y in x:
+        u = y.split(" ")
+        if u[0] == login:
+            if u[1] == haslo:
+                print("poprawnie zalogowano!")
+                return 1
+    print("Niesetty nie udało ci się zalogować")
+    return 0
 while (True):
+    if Logowanie() == 1:
+        pass
+    else:
+        break
     ShowMenu()
 
